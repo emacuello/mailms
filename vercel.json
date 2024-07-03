@@ -9,8 +9,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "status": 404,
-      "dest": "/404.html"
+      "dest": "dist/main.js"
     }
   ],
   "buildCommand": "npm run build"
