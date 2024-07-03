@@ -12,7 +12,6 @@ import { MailerService } from '@nestjs-modules/mailer';
 export class MailService {
   constructor(private readonly mailerService: MailerService) {}
   async createMailWelcome(createMailDto: CreateMailWelcomeDto) {
-    console.log(createMailDto);
     try {
       await this.mailerService.sendMail({
         to: createMailDto.email,
@@ -92,7 +91,6 @@ export class MailService {
   }
 
   async createMailAppointment(newAppointment: CreateAppointment) {
-    console.log(newAppointment);
     try {
       await this.mailerService.sendMail({
         to: newAppointment.user.email,
@@ -116,7 +114,6 @@ export class MailService {
   }
 
   createMailAppointmentChange(appointment: ChangeAppointment) {
-    console.log(appointment);
     try {
       this.mailerService.sendMail({
         to: appointment.appointment.user.email,

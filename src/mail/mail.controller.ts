@@ -9,14 +9,12 @@ import {
   OrderMail,
 } from './dto/create-mail.dto';
 
-@Controller()
+@Controller('mail')
 export class MailController {
   constructor(private readonly mailService: MailService) {}
 
   @MessagePattern({ cmd: 'createMailWelcome' })
   createMailWelcome(@Payload() createMailDto: CreateMailWelcomeDto) {
-    console.log('ingresa???', createMailDto);
-
     return this.mailService.createMailWelcome(createMailDto);
   }
 
@@ -37,8 +35,6 @@ export class MailController {
 
   @MessagePattern({ cmd: 'createMailAppointmentChange' })
   createMailAppointmentChange(@Payload() appointment: ChangeAppointment) {
-    console.log(appointment);
-
     return this.mailService.createMailAppointmentChange(appointment);
   }
 }
