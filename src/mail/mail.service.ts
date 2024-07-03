@@ -7,6 +7,7 @@ import {
   OrderMail,
 } from './dto/create-mail.dto';
 import { MailerService } from '@nestjs-modules/mailer';
+import { LOGO, MYEMAIL } from 'src/config/env';
 
 @Injectable()
 export class MailService {
@@ -24,7 +25,7 @@ export class MailService {
         attachments: [
           {
             filename: 'logo.png',
-            path: 'https://i.ibb.co/stDtVXC/Logo-Emax-Peluqueria-Actualizado.png',
+            path: LOGO,
             cid: 'logo',
           },
         ],
@@ -37,7 +38,7 @@ export class MailService {
   async createMailContact(contactMail: ContactMailPortafolio) {
     try {
       await this.mailerService.sendMail({
-        to: 'ema.cuello1010@gmail.com',
+        to: MYEMAIL,
         subject: `Has recibido un mail de ${contactMail.name}`,
         template: 'test',
         context: {
@@ -73,7 +74,7 @@ export class MailService {
         attachments: [
           {
             filename: 'logo.png',
-            path: 'https://i.ibb.co/stDtVXC/Logo-Emax-Peluqueria-Actualizado.png',
+            path: LOGO,
             cid: 'logo',
           },
         ],
@@ -105,7 +106,7 @@ export class MailService {
         attachments: [
           {
             filename: 'logo.png',
-            path: 'https://i.ibb.co/stDtVXC/Logo-Emax-Peluqueria-Actualizado.png',
+            path: LOGO,
             cid: 'logo',
           },
         ],
@@ -128,7 +129,7 @@ export class MailService {
         attachments: [
           {
             filename: 'logo.png',
-            path: 'https://i.ibb.co/stDtVXC/Logo-Emax-Peluqueria-Actualizado.png',
+            path: LOGO,
             cid: 'logo',
           },
         ],
