@@ -65,11 +65,9 @@ export class MailService {
       })),
       total: order.price,
     };
-    console.log(orderContext);
-
     try {
       await this.mailerService.sendMail({
-        to: order.user[0].email,
+        to: order.user.email,
         subject: 'Gracias por tu compra, ' + order.user.name,
         template: 'payment',
         context: orderContext,
