@@ -39,7 +39,7 @@ export class MailService {
     try {
       await this.mailerService.sendMail({
         to: 'ema.cuello1010@gmail.com',
-        subject: 'Has recibido un mail de' + contactMail.name,
+        subject: `Has recibido un mail de ${contactMail.name}`,
         template: 'test',
         context: {
           name: contactMail.name,

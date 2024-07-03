@@ -10,3 +10,4 @@ export const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
 export const REDIRECT_URL = process.env.REDIRECT_URL;
 export const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
 export const USER = process.env.USER;
+export const PORT = process.env.PORT;
