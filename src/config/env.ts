@@ -10,3 +10,4 @@ export const REDIRECT_URL = process.env.REDIRECT_URL;
 export const USER = process.env.USER;
 export const LOGO = process.env.LOGO;
 export const MYEMAIL = process.env.MYEMAIL;
+export const API_OAUTH = process.env.API_OAUTH;

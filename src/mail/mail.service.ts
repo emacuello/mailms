@@ -14,7 +14,7 @@ export class MailService {
   constructor(private readonly mailerService: MailerService) {}
   async createMailWelcome(createMailDto: CreateMailWelcomeDto) {
     try {
-      await this.mailerService.sendMail({
+      const result = await this.mailerService.sendMail({
         to: createMailDto.email,
         subject: 'Bienvenido a Emax Peluqueria',
         template: 'welcome',
@@ -30,6 +30,7 @@ export class MailService {
           },
         ],
       });
+      console.log(result);
     } catch (error) {
       console.log(error);
     }

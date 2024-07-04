@@ -1,8 +1,27 @@
 import { join } from 'path';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
-import { CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN, USER } from './env';
-import OAuth2Client from './config.oauthmail';
-
+import {
+  API_OAUTH,
+  CLIENT_ID,
+  CLIENT_SECRET,
+  REFRESH_TOKEN,
+  USER,
+} from './env';
+async function fetchAccessToken() {
+  const response = await fetch(API_OAUTH, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${REFRESH_TOKEN}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch access token');
+  }
+  const data = await response.json();
+  console.log(data.accessToken);
+  return data.accessToken;
+}
 export const MailerConfig = {
   transport: {
     service: 'gmail',
@@ -12,7 +31,15 @@ export const MailerConfig = {
       clientId: CLIENT_ID,
       clientSecret: CLIENT_SECRET,
       refreshToken: REFRESH_TOKEN,
-      accessToken: OAuth2Client.getAccessToken(),
+      accessToken: async () => {
+        try {
+          const accessToken = await fetchAccessToken();
+          return accessToken;
+        } catch (error) {
+          console.error('Error fetching access token:', error);
+          throw error;
+        }
+      },
     },
   },
   defaults: {
