@@ -1,5 +1,6 @@
 import { join } from 'path';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
+import fetch from 'node-fetch';
 import {
   API_OAUTH,
   CLIENT_ID,
@@ -7,6 +8,7 @@ import {
   REFRESH_TOKEN,
   USER,
 } from './env';
+
 async function fetchAccessToken() {
   const response = await fetch(API_OAUTH, {
     method: 'GET',
@@ -22,6 +24,7 @@ async function fetchAccessToken() {
   console.log(data.accessToken);
   return data.accessToken;
 }
+
 export const MailerConfig = {
   transport: {
     service: 'gmail',
