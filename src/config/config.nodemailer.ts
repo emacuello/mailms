@@ -1,28 +1,24 @@
 import { join } from 'path';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
-import fetch from 'node-fetch';
-import {
-  API_OAUTH,
-  CLIENT_ID,
-  CLIENT_SECRET,
-  REFRESH_TOKEN,
-  USER,
-} from './env';
+import { envs } from './env';
+import axios from 'axios';
 
 async function fetchAccessToken() {
-  const response = await fetch(API_OAUTH, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${REFRESH_TOKEN}`,
-    },
-  });
-  if (!response.ok) {
+  try {
+    const response = await axios.get(envs.API_OAUTH, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${envs.REFRESH_TOKEN}`,
+      },
+    });
+
+    const data = response.data;
+    console.log(data.accessToken);
+    return data.accessToken;
+  } catch (error) {
+    console.error('Failed to fetch access token', error);
     throw new Error('Failed to fetch access token');
   }
-  const data = await response.json();
-  console.log(data.accessToken);
-  return data.accessToken;
 }
 
 export const MailerConfig = {
@@ -30,10 +26,10 @@ export const MailerConfig = {
     service: 'gmail',
     auth: {
       type: 'OAuth2',
-      user: USER,
-      clientId: CLIENT_ID,
-      clientSecret: CLIENT_SECRET,
-      refreshToken: REFRESH_TOKEN,
+      user: envs.USER,
+      clientId: envs.CLIENT_ID,
+      clientSecret: envs.CLIENT_SECRET,
+      refreshToken: envs.REFRESH_TOKEN,
       accessToken: async () => {
         try {
           const accessToken = await fetchAccessToken();

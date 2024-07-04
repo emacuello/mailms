@@ -7,7 +7,7 @@ import {
   OrderMail,
 } from './dto/create-mail.dto';
 import { MailerService } from '@nestjs-modules/mailer';
-import { LOGO, MYEMAIL } from 'src/config/env';
+import { envs } from 'src/config/env';
 
 @Injectable()
 export class MailService {
@@ -25,7 +25,7 @@ export class MailService {
         attachments: [
           {
             filename: 'logo.png',
-            path: LOGO,
+            path: envs.LOGO,
             cid: 'logo',
           },
         ],
@@ -39,7 +39,7 @@ export class MailService {
   async createMailContact(contactMail: ContactMailPortafolio) {
     try {
       await this.mailerService.sendMail({
-        to: MYEMAIL,
+        to: envs.MYEMAIL,
         subject: `Has recibido un mail de ${contactMail.name}`,
         template: 'test',
         context: {
@@ -75,7 +75,7 @@ export class MailService {
         attachments: [
           {
             filename: 'logo.png',
-            path: LOGO,
+            path: envs.LOGO,
             cid: 'logo',
           },
         ],
@@ -107,7 +107,7 @@ export class MailService {
         attachments: [
           {
             filename: 'logo.png',
-            path: LOGO,
+            path: envs.LOGO,
             cid: 'logo',
           },
         ],
@@ -130,7 +130,7 @@ export class MailService {
         attachments: [
           {
             filename: 'logo.png',
-            path: LOGO,
+            path: envs.LOGO,
             cid: 'logo',
           },
         ],
