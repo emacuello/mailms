@@ -9,7 +9,7 @@ interface Env {
   CLIENT_SECRET: string;
   REFRESH_TOKEN: string;
   REDIRECT_URL: string;
-  USER: string;
+  USER_MAIL: string;
   LOGO: string;
   MYEMAIL: string;
   API_OAUTH: string;

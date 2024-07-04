@@ -26,7 +26,7 @@ export const MailerConfig = {
     service: 'gmail',
     auth: {
       type: 'OAuth2',
-      user: envs.USER,
+      user: envs.USER_MAIL,
       clientId: envs.CLIENT_ID,
       clientSecret: envs.CLIENT_SECRET,
       refreshToken: envs.REFRESH_TOKEN,

@@ -14,7 +14,7 @@ import axios from 'axios';
 export class MailService {
   constructor(private readonly mailerService: MailerService) {}
   async verifyConfiguration() {
-    console.log('USER:', envs.USER);
+    console.log('USER:', envs.USER_MAIL);
     console.log('CLIENT_ID:', envs.CLIENT_ID);
     console.log('CLIENT_SECRET:', envs.CLIENT_SECRET);
     console.log('REFRESH_TOKEN:', envs.REFRESH_TOKEN);
@@ -43,14 +43,6 @@ export class MailService {
       const accessToken = await this.verifyConfiguration();
       console.log('Access Token: 2', accessToken);
 
-      // Intentar enviar un correo de prueba
-      const testMail = await this.mailerService.sendMail({
-        to: envs.USER,
-        subject: 'Prueba de Configuración',
-        text: 'Este es un correo de prueba para verificar la configuración del servicio de correo.',
-      });
-
-      console.log('Correo de prueba enviado:', testMail);
       const result = await this.mailerService.sendMail({
         to: createMailDto.email,
         subject: 'Bienvenido a Emax Peluqueria',
