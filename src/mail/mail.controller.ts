@@ -31,7 +31,7 @@ export class MailController {
   createMailPayment(@Payload() order: OrderMail) {
     console.dir(order, { depth: null });
 
-    // return this.mailService.createMailPayment(order);
+    return this.mailService.createMailPayment(order);
   }
 
   @MessagePattern({ cmd: 'createMailAppointment' })
