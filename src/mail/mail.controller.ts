@@ -22,10 +22,16 @@ export class MailController {
   createMailContact(@Payload() contactMail: ContactMailPortafolio) {
     return this.mailService.createMailContact(contactMail);
   }
+  @MessagePattern({ cmd: 'createMailContact2' })
+  createMailContact2(@Payload() contactMail: ContactMailPortafolio) {
+    return this.mailService.createMailContact2(contactMail);
+  }
 
   @MessagePattern({ cmd: 'createMailPayment' })
   createMailPayment(@Payload() order: OrderMail) {
-    return this.mailService.createMailPayment(order);
+    console.dir(order, { depth: null });
+
+    // return this.mailService.createMailPayment(order);
   }
 
   @MessagePattern({ cmd: 'createMailAppointment' })

@@ -9,6 +9,7 @@ export class ContactMailPortafolio {
   name: string;
   email: string;
   message: string;
+  subject?: string;
 }
 
 export class CreatePayment {

@@ -52,6 +52,22 @@ export class MailService {
       console.log(error);
     }
   }
+  async createMailContact2(contactMail: ContactMailPortafolio) {
+    try {
+      await this.mailerService.sendMail({
+        to: envs.MYEMAIL,
+        subject: contactMail.subject,
+        template: 'test',
+        context: {
+          name: contactMail.name,
+          email: contactMail.email,
+          message: contactMail.message,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async createMailPayment(order: OrderMail) {
     const orderContext = {
@@ -62,7 +78,7 @@ export class MailService {
         name: item.name,
         description: this.truncateDescription(item.description, 6),
         quantity: item.quantity,
-        price: item.unitPrice,
+        price: item.price,
       })),
       total: order.price,
     };
