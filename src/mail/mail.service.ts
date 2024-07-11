@@ -71,21 +71,21 @@ export class MailService {
 
   async createMailPayment(order: OrderMail) {
     const orderContext = {
-      orderId: order.id,
-      customerName: order.user.name,
-      items: order.products.map((item) => ({
+      orderId: order.order.id,
+      customerName: order.order.user.name,
+      items: order.order.products.map((item) => ({
         image: item.image[0],
         name: item.name,
         description: this.truncateDescription(item.description, 6),
         quantity: item.quantity,
         price: item.price,
       })),
-      total: order.price,
+      total: order.order.price,
     };
     try {
       await this.mailerService.sendMail({
-        to: order.user.email,
-        subject: 'Gracias por tu compra, ' + order.user.name,
+        to: order.order.user.email,
+        subject: 'Gracias por tu compra, ' + order.order.user.name,
         template: 'payment',
         context: orderContext,
         attachments: [

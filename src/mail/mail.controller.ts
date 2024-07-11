@@ -29,7 +29,7 @@ export class MailController {
 
   @MessagePattern({ cmd: 'createMailPayment' })
   createMailPayment(@Payload() order: OrderMail) {
-    console.dir(order, { depth: null });
+    console.dir({ order });
 
     return this.mailService.createMailPayment(order);
   }

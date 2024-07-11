@@ -17,12 +17,14 @@ export class CreatePayment {
 }
 
 export class OrderMail {
-  id: string;
-  products: Products[];
-  user: User;
-  price: number;
-  createdAt: Date;
-  updatedAt: Date;
+  order: {
+    id: string;
+    products: Products[];
+    user: User;
+    price: number;
+    createdAt: Date;
+    updatedAt: Date;
+  };
 }
 
 export class CreateAppointment {
