@@ -8,11 +8,11 @@ El proyecto está completamente bajo el entorno de Node.js. Se usaron los framew
 
 ### Microservicios
 
-1. **API Gateway**: Punto de entrada al backend, recibe las solicitudes del cliente y se encarga de repartir las tareas a los diferentes microservicios. A su vez, cuando se trata del pago, de usuarios de Google, y para la subida de imágenes de perfil de usuario, es este servidor el encargado de hacerlo..
-2. **Microservicio de Auth, Users y Appointments**: Se encarga de registrar a los nuevos usuarios en la base de datos encriptando sus contraseñas con Bcrypt, verificar sus credenciales y emitir sus respectivos JWT, crear, modificar y eliminar turnos para los usuarios.
-3. **Microservicio de Products**: El microservicio de productos es el encargado de crear, eliminar y modificar los productos para el Ecommerce de la aplicación.
-4. **Microservicio de Emails**: El microservicio de correos electrónicos es el encargado de enviar emails cuando un usuario se registra, crea un turno, cancela un turno y realiza una compra exitosa.
-5. **Microservicio de AccessTokens**: Este microservicio se encarga de la creación del AccessToken necesario para que el microservicio de correos electrónicos funcione correctamente.
+1. **[API Gateway](https://github.com/emacuello/emax-peluqueria-gateway)**: Punto de entrada al backend, recibe las solicitudes del cliente y se encarga de repartir las tareas a los diferentes microservicios. A su vez, cuando se trata del pago, de usuarios de Google, y para la subida de imágenes de perfil de usuario, es este servidor el encargado de hacerlo.
+2. **[Microservicio de Auth, Users y Appointments](https://github.com/emacuello/emaxpeluqueria)**: Se encarga de registrar a los nuevos usuarios en la base de datos encriptando sus contraseñas con Bcrypt, verificar sus credenciales y emitir sus respectivos JWT, crear, modificar y eliminar turnos para los usuarios.
+3. **[Microservicio de Products](https://github.com/emacuello/shop-emaxpeluqueria)**: El microservicio de productos es el encargado de crear, eliminar y modificar los productos para el Ecommerce de la aplicación.
+4. **[Microservicio de Emails](https://github.com/emacuello/mailms)**: El microservicio de correos electrónicos es el encargado de enviar emails cuando un usuario se registra, crea un turno, cancela un turno y realiza una compra exitosa.
+5. **[Microservicio de AccessTokens](https://github.com/emacuello/apioauthtoken)**: Este microservicio se encarga de la creación del AccessToken necesario para que el microservicio de correos electrónicos funcione correctamente.
 
 ## Diagrama
 
