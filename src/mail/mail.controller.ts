@@ -36,6 +36,8 @@ export class MailController {
 
   @MessagePattern({ cmd: 'createMailAppointment' })
   createMailAppointment(@Payload() newAppointment: CreateAppointment) {
+    console.log({ newAppointment });
+
     return this.mailService.createMailAppointment(newAppointment);
   }
 

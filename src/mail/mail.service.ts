@@ -110,7 +110,7 @@ export class MailService {
 
   async createMailAppointment(newAppointment: CreateAppointment) {
     try {
-      await this.mailerService.sendMail({
+      const result = await this.mailerService.sendMail({
         to: newAppointment.user.email,
         subject: 'Cita agendada',
         template: 'newAppointment',
@@ -128,7 +128,11 @@ export class MailService {
           },
         ],
       });
-    } catch (error) {}
+
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   createMailAppointmentChange(appointment: ChangeAppointment) {
