@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { join } from 'path';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { envs } from './env';
@@ -23,22 +24,26 @@ async function fetchAccessToken() {
 
 export const MailerConfig = {
   transport: {
-    service: 'gmail',
+    host: 'smtp.gmail.com', //Servidor SMTP de Gmail
+    port: 587, //Puerto para TLS
+    secure: false, //False para TLS
     auth: {
-      type: 'OAuth2',
-      user: envs.USER_MAIL,
-      clientId: envs.CLIENT_ID,
-      clientSecret: envs.CLIENT_SECRET,
-      refreshToken: envs.REFRESH_TOKEN,
-      accessToken: async () => {
-        try {
-          const accessToken = await fetchAccessToken();
-          return accessToken;
-        } catch (error) {
-          console.error('Error fetching access token:', error);
-          throw error;
-        }
-      },
+      user: envs.MAILER_AUTH_USER,
+      pass: envs.MAILER_AUTH_PASS,
+      // type: 'OAuth2',
+      // user: envs.USER_MAIL,
+      // clientId: envs.CLIENT_ID,
+      // clientSecret: envs.CLIENT_SECRET,
+      // refreshToken: envs.REFRESH_TOKEN,
+      // accessToken: async () => {
+      //   try {
+      //     const accessToken = await fetchAccessToken();
+      //     return accessToken;
+      //   } catch (error) {
+      //     console.error('Error fetching access token:', error);
+      //     throw error;
+      //   }
+      // },
     },
   },
   defaults: {

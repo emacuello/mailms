@@ -9,10 +9,11 @@ interface Env {
   CLIENT_SECRET: string;
   REFRESH_TOKEN: string;
   REDIRECT_URL: string;
-  USER_MAIL: string;
   LOGO: string;
   MYEMAIL: string;
   API_OAUTH: string;
+  MAILER_AUTH_USER: string;
+  MAILER_AUTH_PASS: string;
 }
 const envsSchema = joi
   .object({
@@ -23,7 +24,6 @@ const envsSchema = joi
     CLIENT_SECRET: joi.string().required(),
     REFRESH_TOKEN: joi.string().required(),
     REDIRECT_URL: joi.string().required(),
-    USER_MAIL: joi.string().required(),
     LOGO: joi.string().required(),
     MYEMAIL: joi.string().required(),
     API_OAUTH: joi.string().required(),

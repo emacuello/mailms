@@ -14,35 +14,31 @@ export class MailController {
   constructor(private readonly mailService: MailService) {}
 
   @MessagePattern({ cmd: 'createMailWelcome' })
-  createMailWelcome(@Payload() createMailDto: CreateMailWelcomeDto) {
-    return this.mailService.createMailWelcome(createMailDto);
+  async createMailWelcome(@Payload() createMailDto: CreateMailWelcomeDto) {
+    return await this.mailService.createMailWelcome(createMailDto);
   }
 
   @MessagePattern({ cmd: 'createMailContact' })
-  createMailContact(@Payload() contactMail: ContactMailPortafolio) {
-    return this.mailService.createMailContact(contactMail);
+  async createMailContact(@Payload() contactMail: ContactMailPortafolio) {
+    return await this.mailService.createMailContact(contactMail);
   }
   @MessagePattern({ cmd: 'createMailContact2' })
-  createMailContact2(@Payload() contactMail: ContactMailPortafolio) {
+  async createMailContact2(@Payload() contactMail: ContactMailPortafolio) {
     return this.mailService.createMailContact2(contactMail);
   }
 
   @MessagePattern({ cmd: 'createMailPayment' })
-  createMailPayment(@Payload() order: OrderMail) {
-    console.dir({ order });
-
-    return this.mailService.createMailPayment(order);
+  async createMailPayment(@Payload() order: OrderMail) {
+    return await this.mailService.createMailPayment(order);
   }
 
   @MessagePattern({ cmd: 'createMailAppointment' })
-  createMailAppointment(@Payload() newAppointment: CreateAppointment) {
-    console.log({ newAppointment });
-
-    return this.mailService.createMailAppointment(newAppointment);
+  async createMailAppointment(@Payload() newAppointment: CreateAppointment) {
+    return await this.mailService.createMailAppointment(newAppointment);
   }
 
   @MessagePattern({ cmd: 'createMailAppointmentChange' })
-  createMailAppointmentChange(@Payload() appointment: ChangeAppointment) {
-    return this.mailService.createMailAppointmentChange(appointment);
+  async createMailAppointmentChange(@Payload() appointment: ChangeAppointment) {
+    return await this.mailService.createMailAppointmentChange(appointment);
   }
 }

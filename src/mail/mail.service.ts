@@ -38,7 +38,7 @@ export class MailService {
 
   async createMailContact(contactMail: ContactMailPortafolio) {
     try {
-      await this.mailerService.sendMail({
+      const result = await this.mailerService.sendMail({
         to: envs.MYEMAIL,
         subject: `Has recibido un mail de ${contactMail.name}`,
         template: 'test',
@@ -48,13 +48,14 @@ export class MailService {
           message: contactMail.message,
         },
       });
+      console.log(result);
     } catch (error) {
       console.log(error);
     }
   }
   async createMailContact2(contactMail: ContactMailPortafolio) {
     try {
-      await this.mailerService.sendMail({
+      const result = await this.mailerService.sendMail({
         to: envs.MYEMAIL,
         subject: contactMail.subject,
         template: 'test',
@@ -64,6 +65,7 @@ export class MailService {
           message: contactMail.message,
         },
       });
+      console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -110,7 +112,7 @@ export class MailService {
 
   async createMailAppointment(newAppointment: CreateAppointment) {
     try {
-      const result = await this.mailerService.sendMail({
+      await this.mailerService.sendMail({
         to: newAppointment.user.email,
         subject: 'Cita agendada',
         template: 'newAppointment',
@@ -128,16 +130,14 @@ export class MailService {
           },
         ],
       });
-
-      console.log(result);
     } catch (error) {
       console.log(error);
     }
   }
 
-  createMailAppointmentChange(appointment: ChangeAppointment) {
+  async createMailAppointmentChange(appointment: ChangeAppointment) {
     try {
-      this.mailerService.sendMail({
+      await this.mailerService.sendMail({
         to: appointment.appointment.user.email,
         subject: 'El turno fue cancelado',
         template: 'appointmentChange',
