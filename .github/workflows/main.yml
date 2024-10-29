@@ -28,22 +28,23 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/sendmailer:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/sendmailer:${{ github.sha }}
 
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   needs: [build]
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-  #     - name: Deploy to VPS
-  #       uses: appleboy/ssh-action@v1.0.3
-  #       with:
-  #         host: ${{ secrets.VPS_HOST }}
-  #         username: ${{ secrets.VPS_USERNAME }}
-  #         key: ${{ secrets.VPS_KEY }}
-  #         script: |
-  #           cd ${{ secrets.VPS_DIR }}
-  #           git pull
-  #           docker stop ${{ secrets.TAG_CONTAINER}}
-  #           docker rm ${{ secrets.TAG_CONTAINER}}
-  #           docker build -t ${{ secrets.TAG_CONTAINER}} .
-  #           docker run -d --name ${{ secrets.TAG_CONTAINER}} ${{ secrets.TAG_CONTAINER}}
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_KEY }}
+          script: |
+            cd ${{ secrets.VPS_DIR }}
+            git pull
+            docker stop ${{ secrets.TAG_CONTAINER}}
+            docker rm ${{ secrets.TAG_CONTAINER}}            
+            docker pull ${{ secrets.DOCKERHUB_USERNAME}}/sendmailer:latest
+            docker run -d --name ${{ secrets.TAG_CONTAINER}} --env-file .env ${{ secrets.DOCKERHUB_USERNAME}}/sendmailer:latest
+            docker image prune -a -f
